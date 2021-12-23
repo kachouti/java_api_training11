@@ -14,7 +14,7 @@ import java.net.http.HttpResponse;
 public class FireHandler implements HttpHandler {
     private final Jeu jeu;
 
-    public final String schema = "{\"$schema\":\"http://json-schema.org/schema#\",\"type\":\"object\"," +
+    public final String sche = "{\"$schema\":\"http://json-schema.org/schema#\",\"type\":\"object\"," +
         "\"properties\":{\"consequence\":{\"type\":\"string\",\"enum\":[\"miss\",\"hit\",\"sunk\"]}," +
         "\"shipLeft\":{\"type\":\"boolean\"}},\"required\":[\"consequence\",\"shipLeft\"]}";
 
@@ -43,7 +43,7 @@ public class FireHandler implements HttpHandler {
     public void sendFireResponse(HttpExchange exchange, String consequence, boolean shipLeft) throws IOException {
         String rep = "{\"consequence\":\"" + consequence + "\", \"shipLeft\":" + shipLeft + "}";
         Validation ValidSche = new Validation();
-        if(ValidSche.validateSch(rep, this.schema)){
+        if(ValidSche.validateSch(rep, this.sche)){
             exchange.getResponseHeaders().add("Content-Type", "application/json");
             exchange.sendResponseHeaders(202, rep.length());
         }
