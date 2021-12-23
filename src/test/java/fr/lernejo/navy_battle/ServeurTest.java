@@ -24,8 +24,8 @@ class ServeurTest {
         HttpServer httpServer = new Serveur().launch(this.port, this.game);
         httpServer.start();
 
-        String stringExpected = "port Http serveur " + this.port + "...\n";
-        Assertions.assertThat(outContent.toString()).as("message de succes ").isEqualTo(stringExpected);
+        String stringExpected = "HTTP server started on port" + this.port + "...\n";
+        Assertions.assertThat(outContent.toString()).as("server message starting ").isEqualTo(stringExpected);
         httpServer.stop(1);
     }
 }
