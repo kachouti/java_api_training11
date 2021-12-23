@@ -15,13 +15,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class ServeurTest {
     private final int port = 9876;
     private final Joueur joueur = new Joueur();
-    private final Jeu game = new Jeu(this.joueur);
+    private final Jeu jeu = new Jeu(this.joueur);
 
     @Test
     void launch() throws IOException {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        HttpServer httpServer = new Serveur().launch(this.port, this.game);
+        HttpServer httpServer = new Serveur().launch(this.port, this.jeu);
         httpServer.start();
 
         String stringExpected = "HTTP server started on port" + this.port + "...\n";

@@ -16,14 +16,14 @@ public class PostRequestTest {
 
     @Test
     void sendPostRequest() throws IOException, InterruptedException {
-        HttpServer serv= new Serveur().launch(9876, this.jeu);
-        serv.start();
+        HttpServer httpServer= new Serveur().launch(9876, this.jeu);
+        httpServer.start();
         PostRequest request = new PostRequest(9876);
         String response = request.sendPostRequest("http://localhost:9876");
         Assertions.assertThat(response)
             .as("Post Request return response")
             .isEqualTo("{\"id\":\"0\", \"url\":\"http://localhost:9876\", \"message\":\"server message starting\"}");
-        serv.stop(1);
+        httpServer.stop(1);
 
     }
 }
